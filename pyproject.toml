@@ -1,0 +1,26 @@
+[project]
+name = "p01"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Zakihran13", email = "zakisuzaki13@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "dagster>=1.13.30",
+    "dbt-core>=1.12.7",
+    "duckdb>=2.0.0",
+    "httpx>=0.28.1",
+    "loguru>=0.8.0",
+    "openpyxl>=3.1.5",
+    "pandera>=0.36.0",
+    "ruff>=0.17.5",
+]
+
+[project.scripts]
+p01 = "p01:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
