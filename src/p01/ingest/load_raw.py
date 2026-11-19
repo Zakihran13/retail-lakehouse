@@ -34,7 +34,7 @@ def iter_source_rows(path: Path) -> Iterator[tuple[str, int, dict[str, Any]]]:
             logger.info(f"Iterating Worksheet: {sheet.title}")
             columns: dict[int, str] = {}  # index -> canonical name
             originals: dict[int, str] = {}  # index -> source header text
-            
+
             for row_no, row in enumerate(sheet.iter_rows(values_only=True), start=1):
                 if not columns:
                     for index, cell in enumerate(row):
@@ -100,19 +100,12 @@ def load(source: Path, db_path: Path, batch_size: int = 5_000) -> tuple[int, int
         load_schema(con)
         before = _count(con)
 
-        n_stop = 0
         batch: list[tuple[Any, ...]] = []
         for sheet, row_no, row in iter_source_rows(source):
             batch.append(_record(sheet, row_no, row, workbook_hash, ingested_at))
             if len(batch) >= batch_size:
                 con.executemany(INSERT, batch)
                 batch.clear()
-
-                n_stop += 1
-                if n_stop >= 2:
-                    break
-
-            
 
         if batch:
             con.executemany(INSERT, batch)

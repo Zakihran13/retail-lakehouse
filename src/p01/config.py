@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import os
 
-
 p01_url_source = os.getenv("P01_SOURCE_URL", "")
 p01_duckdb_path = os.getenv("P01_DUCKDB_PATH", "")
 p01_source_sha = os.getenv("P01_SOURCE_SHA256", "")
