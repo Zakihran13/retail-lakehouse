@@ -221,3 +221,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local debug database
+src/p01/ingest/data/debug
+
+# or ignore all DuckDB files
+*.duckdb
+*.wal
+
+
+# local testing doc
+*.xlsx
